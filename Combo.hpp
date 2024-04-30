@@ -11,7 +11,7 @@ using namespace std;
 class Combo {
 public:
 
-    Combo(int code, vector<Item> items, float discount);
+    Combo(vector<Item> items, float discount);
     Combo();
     
     int getCode();
@@ -19,16 +19,17 @@ public:
     
     float getDiscount();
     float getPrice();
+    float getPriceWithDiscount();
     void setItems(vector<Item> items);
     void setDiscount(float discount);
     void setPrice(float price);
 
-protected:
+private:
     int code;
     vector<Item> items;
-    float discount = 0/100;
+    float discount = 0.00;
     float price = 0.00;
-    static unsigned int codeOrder;
+    static unsigned int comboCodeSequence;
 };
 
 #endif

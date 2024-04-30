@@ -7,7 +7,7 @@
 
 using namespace std;
 
-enum accompanimentSize {
+enum AccompanimentSize {
     small = 'S',
     normal = 'N',
     big = 'B',
@@ -16,16 +16,16 @@ enum accompanimentSize {
 class Accompaniment: public Item {
 public:
 
-    Accompaniment(string name, string description, float cost, float price, accompanimentSize accompanimentSize);
+    Accompaniment(string name, string description, float cost, float price, AccompanimentSize accompanimentSize);
     Accompaniment();
 
-    accompanimentSize getAccompanimentSize();
+    AccompanimentSize getAccompanimentSize();
 
-    void setAccompanimentSize(accompanimentSize accompanimentSize);
+    void setAccompanimentSize(AccompanimentSize accompanimentSize);
     void setCost(float cost);
 
 private:
-    accompanimentSize accompanimentSize = normal;
+    AccompanimentSize accompanimentSize = normal;
 };
 
 #endif

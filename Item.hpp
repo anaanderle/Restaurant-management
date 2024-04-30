@@ -29,7 +29,7 @@ protected:
     string description = "";
     float cost = 0.00;
     float price = 0.00;
-    static unsigned int codeOrder;
+    static unsigned int itemCodeSequence;
 };
 
 #endif

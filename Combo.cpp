@@ -6,13 +6,13 @@
 using namespace std;
 
 Combo::Combo() {
-    this->codeOrder++;
-    this->code = codeOrder;
+    this->comboCodeSequence++;
+    this->code = comboCodeSequence;
 }
 
-Combo::Combo(int code, vector<Item> items, float discount) {
-    this->codeOrder++;
-    this->code = codeOrder;
+Combo::Combo(vector<Item> items, float discount) {
+    this->comboCodeSequence++;
+    this->code = comboCodeSequence;
 
     this->items = items;
     this->discount = discount;
@@ -31,7 +31,10 @@ float Combo::getDiscount() {
 }
 
 float Combo::getPrice() {
-    float price = 0.00;
+    return price;
+}
+
+float Combo::getPriceWithDiscount() {
     for (Item item : items) {
         price += item.getPrice();
     }
@@ -50,4 +53,3 @@ void Combo::setPrice(float price) {
     this->price = price;
 }
 
-unsigned int Combo::codeOrder = 0;

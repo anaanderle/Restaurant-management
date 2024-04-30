@@ -7,15 +7,15 @@ using namespace std;
 
 Accompaniment::Accompaniment(): Item() {}
 
-Accompaniment::Accompaniment(string name, string description, float cost, float price, enum accompanimentSize accompanimentSize): Item(name, description, cost, price) {
+Accompaniment::Accompaniment(string name, string description, float cost, float price, AccompanimentSize accompanimentSize): Item(name, description, cost, price) {
     this->accompanimentSize = accompanimentSize;
 }
 
-accompanimentSize Accompaniment::getAccompanimentSize() {
+AccompanimentSize Accompaniment::getAccompanimentSize() {
     return accompanimentSize;
 }
 
-void Accompaniment::setAccompanimentSize(enum accompanimentSize accompanimentSize) {
+void Accompaniment::setAccompanimentSize(AccompanimentSize accompanimentSize) {
     this->accompanimentSize = accompanimentSize;
 }
 
