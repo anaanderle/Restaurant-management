@@ -77,3 +77,7 @@ bool Date::validDate(int day, int month, int year) {
 
     return false;
 }
+
+bool Date::operator!=(const Date& other) const {
+    return day != other.day || month != other.month || year != other.year;
+}

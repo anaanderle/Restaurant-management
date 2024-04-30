@@ -1,6 +1,3 @@
-//combo.cpp
-
-#include "Combo.hpp"
 #include "Customer.hpp"
 #include <string>
 
