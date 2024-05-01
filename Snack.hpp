@@ -13,8 +13,6 @@ public:
     Snack(string name, string description, float cost, float price);
     Snack();
 
-    char getType();
-
     void setCost(float cost);
 };
 

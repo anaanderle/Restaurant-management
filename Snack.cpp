@@ -12,7 +12,3 @@ void Snack::setCost(float cost) {
     this->cost = cost;
     this->price = 3 * cost;
 }
-
-char Snack::getType() {
-    return 'S';
-}

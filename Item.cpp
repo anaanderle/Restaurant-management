@@ -36,11 +36,7 @@ float Item::getCost() {
 
 float Item::getPrice() {
     return price;
-}
-
-char Item::getType() {
-    return 'I';
-}
+}g
 
 void Item::setName(string name) {
     this->name = name;
