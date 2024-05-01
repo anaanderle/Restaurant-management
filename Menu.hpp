@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "Item.hpp"
+#include "Restaurant.hpp"
 #include <vector>
 
 using namespace std;
@@ -11,15 +12,25 @@ using namespace std;
 class Menu {
 public:
 
-    Menu();
-    Menu(string name, vector<Item> items);
-    
-    int getCode();
-    string getName();
-    vector<Item> getItems();
-    
-    void setName(string name);
-    void setItems(vector<Item> items);
+    Menu(string name, Restaurant restaurant);
+
+    int pedidos_andamento();
+    int itens_vendidos();
+    float faturamento();
+
+    void menu_inicial();
+    void menu_cliente();
+    void menu_admin();
+    void finalizar();
+    void lanches();
+    void bebidas();
+    void sobremesas();
+    void combos();
+    void acompanhamentos();
+
+private:
+    string name = "";
+    Restaurant restaurant;
 };
 
 #endif

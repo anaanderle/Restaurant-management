@@ -26,3 +26,4 @@ string Customer::getName() {
 void Customer::setName(string name) {
     this->name = name;
 }
+
