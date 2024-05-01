@@ -14,7 +14,7 @@ public:
     void print();
     bool validDate(int day, int month, int year);
 
-    bool operator!=(const Date& other) const;
+    bool operator!=(Date* other) const;
 private:
     int day=1;
     int month=1;

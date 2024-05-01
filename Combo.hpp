@@ -11,22 +11,22 @@ using namespace std;
 class Combo {
 public:
 
-    Combo(vector<Item> items, float discount);
+    Combo(vector<Item*> items, float discount);
     Combo();
     
     int getCode();
-    vector<Item> getItems();
+    vector<Item*> getItems();
     
     float getDiscount();
     float getPrice();
     float getPriceWithDiscount();
-    void setItems(vector<Item> items);
+    void setItems(vector<Item*> items);
     void setDiscount(float discount);
     void setPrice(float price);
 
 private:
     int code;
-    vector<Item> items;
+    vector<Item*> items;
     float discount = 0.00;
     float price = 0.00;
     static unsigned int comboCodeSequence;

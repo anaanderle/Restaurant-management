@@ -33,8 +33,13 @@ string Item::getDescription() {
 float Item::getCost() {
     return cost;
 }
+
 float Item::getPrice() {
     return price;
+}
+
+char Item::getType() {
+    return 'I';
 }
 
 void Item::setName(string name) {
@@ -52,4 +57,8 @@ void Item::setCost(float cost) {
 
 void Item::setPrice(float price) {
     this->price = price;
+}
+
+void Item::print() {
+    cout << name << endl;
 }

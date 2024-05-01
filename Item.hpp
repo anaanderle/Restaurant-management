@@ -12,11 +12,13 @@ public:
     Item(string name, string description, float cost, float price);
     Item();
 
-    int getCode();
-    string getName();
-    string getDescription();
+    virtual int getCode();
+    virtual string getName();
+    virtual string getDescription();
     float getCost();
     float getPrice();
+    virtual char getType();
+    void print();
 
     void setName(string name);
     void setDescription(string description);

@@ -1,7 +1,7 @@
 #include "Restaurant.hpp"
 
-Restaurant::Restaurant(string name, vector<Item> items, vector<Combo> combos,
-                       vector<Order> orders, vector<Customer> customers)
+Restaurant::Restaurant(string name, vector<Item*> items, vector<Combo*> combos,
+                       vector<Order*> orders, vector<Customer*> customers)
 {
     this->name = name;
     this->items = items;
@@ -17,22 +17,22 @@ string Restaurant::getName()
     return name;
 }
 
-vector<Item> Restaurant::getItems()
+vector<Item*> Restaurant::getItems()
 {
     return items;
 }
 
-vector<Combo> Restaurant::getCombos()
+vector<Combo*> Restaurant::getCombos()
 {
     return combos;
 }
 
-vector<Order> Restaurant::getOrders()
+vector<Order*> Restaurant::getOrders()
 {
     return orders;
 }
 
-vector<Customer> Restaurant::getCustomers()
+vector<Customer*> Restaurant::getCustomers()
 {
     return customers;
 }
@@ -42,53 +42,53 @@ void Restaurant::setName(string name)
     this->name = name;
 }
 
-void Restaurant::setItems(vector<Item> items)
+void Restaurant::setItems(vector<Item*> items)
 {
     this->items = items;
 }
 
-void Restaurant::setCombos(vector<Combo> combos)
+void Restaurant::setCombos(vector<Combo*> combos)
 {
     this->combos = combos;
 }
 
-void Restaurant::setOrders(vector<Order> orders)
+void Restaurant::setOrders(vector<Order*> orders)
 {
     this->orders = orders;
 }
 
-void Restaurant::setCustomers(vector<Customer> customers)
+void Restaurant::setCustomers(vector<Customer*> customers)
 {
     this->customers = customers;
 }
 
-void Restaurant::addItem(Item item)
+void Restaurant::addItem(Item* item)
 {
     this->items.push_back(item);
 }
 
-void Restaurant::addCombo(Combo combo)
+void Restaurant::addCombo(Combo* combo)
 {
     this->combos.push_back(combo);
 }
 
-void Restaurant::addOrder(Order order)
+void Restaurant::addOrder(Order* order)
 {
     this->orders.push_back(order);
 }
 
-void Restaurant::addCustomer(Customer &customer)
+void Restaurant::addCustomer(Customer* customer)
 {
     this->customers.push_back(customer);
 }
 
-vector<Order> Restaurant::getOrdersWaitingPayment()
+vector<Order*> Restaurant::getOrdersWaitingPayment()
 {
-    vector<Order> ordersWaitingPayment = {};
+    vector<Order*> ordersWaitingPayment = {};
 
     for (auto &order : orders)
     {
-        if (order.getOrderStatus() == waitingPayment)
+        if (order->getOrderStatus() == waitingPayment)
         {
             ordersWaitingPayment.push_back(order);
         }
@@ -97,13 +97,13 @@ vector<Order> Restaurant::getOrdersWaitingPayment()
     return ordersWaitingPayment;
 }
 
-vector<Order> Restaurant::getOrdersInProduction()
+vector<Order*> Restaurant::getOrdersInProduction()
 {
-    vector<Order> ordersInProduction = {};
+    vector<Order*> ordersInProduction = {};
 
     for (auto &order : orders)
     {
-        if (order.getOrderStatus() == production)
+        if (order->getOrderStatus() == production)
         {
             ordersInProduction.push_back(order);
         }
@@ -112,16 +112,16 @@ vector<Order> Restaurant::getOrdersInProduction()
     return ordersInProduction;
 }
 
-vector<Item> Restaurant::getItemsSoldByDate(Date date)
+vector<Item*> Restaurant::getItemsSoldByDate(Date* date)
 {
-    vector<Item> itemsSold = {};
+    vector<Item*> itemsSold = {};
 
     for (auto &order : orders)
     {
-        if (order.getCreatedAt() != date)
+        if (order->getCreatedAt() != date)
             break;
 
-        for (auto &item : order.getItems())
+        for (auto &item : order->getItems())
         {
             itemsSold.push_back(item);
         }
@@ -130,37 +130,37 @@ vector<Item> Restaurant::getItemsSoldByDate(Date date)
     return itemsSold;
 }
 
-float Restaurant::getBillingByDate(Date date)
+float Restaurant::getBillingByDate(Date* date)
 {
     float billing = 0;
 
     for (auto &order : orders)
     {
-        if (order.getCreatedAt() != date)
+        if (order->getCreatedAt() != date)
             break;
 
-        for (auto &item : order.getItems())
+        for (auto &item : order->getItems())
         {
-            billing += item.getPrice();
+            billing += item->getPrice();
         }
 
-        for (auto &combo : order.getCombos())
+        for (auto &combo : order->getCombos())
         {
-            billing += combo.getPriceWithDiscount();
+            billing += combo->getPriceWithDiscount();
         }
     }
 
     return billing;
 }
 
-Customer *Restaurant::getCustomerByCode(int code)
+Customer* Restaurant::getCustomerByCode(int code)
 {
 
-    for (Customer customer : customers)
+    for (Customer* customer : customers)
     {
-        if (customer.getCode() == code)
+        if (customer->getCode() == code)
         {
-            return &customer;
+            return customer;
         }
     }
 

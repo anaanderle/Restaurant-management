@@ -10,7 +10,7 @@ Combo::Combo() {
     this->code = comboCodeSequence;
 }
 
-Combo::Combo(vector<Item> items, float discount) {
+Combo::Combo(vector<Item*> items, float discount) {
     this->comboCodeSequence++;
     this->code = comboCodeSequence;
 
@@ -22,7 +22,7 @@ int Combo::getCode() {
     return code;
 }
 
-vector<Item> Combo::getItems() {
+vector<Item*> Combo::getItems() {
     return items;
 }
 
@@ -35,13 +35,13 @@ float Combo::getPrice() {
 }
 
 float Combo::getPriceWithDiscount() {
-    for (Item item : items) {
-        price += item.getPrice();
+    for (Item* item : items) {
+        price += item->getPrice();
     }
     return price - (price * discount);
 }
 
-void Combo::setItems(vector<Item> items) {
+void Combo::setItems(vector<Item*> items) {
     this->items = items;
 }
 

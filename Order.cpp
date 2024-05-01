@@ -3,7 +3,7 @@
 // oii, tá me vendo?
 using namespace std;
 
-Order::Order(vector<Item> items, vector<Combo> combos, Date createdAt) {
+Order::Order(vector<Item*> items, vector<Combo*> combos, Date* createdAt) {
     this->orderCodeSequence++;
     this->code = orderCodeSequence;
 
@@ -22,11 +22,11 @@ int Order::getCode() {
     return code;
 }
 
-vector<Item> Order::getItems() {
+vector<Item*> Order::getItems() {
     return items;
 }
 
-vector<Combo> Order::getCombos() {
+vector<Combo*> Order::getCombos() {
     return combos;
 }
 
@@ -38,11 +38,11 @@ OrderStatus Order::getOrderStatus() {
     return orderStatus;
 }
 
-Date Order::getCreatedAt() {
+Date* Order::getCreatedAt() {
     return createdAt;
 }
 
-Customer Order::getCustomer() {
+Customer* Order::getCustomer() {
     return customer;
 }
 
@@ -50,12 +50,12 @@ PaymentMethod Order::getPaymentMethod() {
     return paymentMethod;
 }
 
-void Order::setItems(vector<Item> items) {
+void Order::setItems(vector<Item*> items) {
     this->items = items;
     this->totalValue = this->calculateTotalValue();
 }
 
-void Order::setCombos(vector<Combo> combos) {
+void Order::setCombos(vector<Combo*> combos) {
     this->combos = combos;
     this->totalValue = this->calculateTotalValue();
 }
@@ -64,16 +64,16 @@ void Order::setOrderStatus(OrderStatus orderStatus) {
     this->orderStatus = orderStatus;
 }
 
-void Order::setCustomer(Customer customer) {
+void Order::setCustomer(Customer* customer) {
     this->customer = customer;
 }
 
-void Order::addItem(Item item) {
-    this->items.push_back(item);
-    this->totalValue = this->calculateTotalValue();
+void Order::addItem(Item* item) {
+        this->items.push_back(item);
+        this->totalValue = this->calculateTotalValue();
 }
 
-void Order::addCombo(Combo combo) {
+void Order::addCombo(Combo* combo) {
     this->combos.push_back(combo);
     this->totalValue = this->calculateTotalValue();
 }
@@ -87,12 +87,18 @@ float Order::calculateTotalValue() {
     float totalValue = 0;
 
     for (auto& item : items) {
-        totalValue += item.getPrice();
+        totalValue += item->getPrice();
     }
 
     for (auto& combo : combos) {
-        totalValue += combo.getPriceWithDiscount();
+        totalValue += combo->getPriceWithDiscount();
     }
 
     return totalValue;
+}
+
+void Order::print() {
+    for(auto item : items){
+        item->print();
+    }
 }

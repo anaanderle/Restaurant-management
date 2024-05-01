@@ -28,21 +28,20 @@ int main()
     Accompaniment acompanhamento1("Batata frita", "Batata frita", 10.0, 15.0, tamanho);
     Accompaniment acompanhamento2("Onion rings", "Anéis de cebola empanados", 10.0, 15.0, tamanho);
     Accompaniment acompanhamento3("Nuggets", "Nuggets de frango", 10.0, 15.0, tamanho);
-    vector<Item> itemsCombo1 = {lanche1, bebida1, acompanhamento1};
-    vector<Item> itemsCombo2 = {lanche2, bebida2, acompanhamento2};
-    vector<Item> itemsCombo3 = {lanche3, bebida3, acompanhamento3};
+    vector<Item*> itemsCombo1 = {&lanche1, &bebida1, &acompanhamento1};
+    vector<Item*> itemsCombo2 = {&lanche2, &bebida2, &acompanhamento2};
+    vector<Item*> itemsCombo3 = {&lanche3, &bebida3, &acompanhamento3};
     Combo combo1(itemsCombo1, 0.15);
     Combo combo2(itemsCombo2, 0.15);
     Combo combo3(itemsCombo3, 0.15);
 
-    vector<Item> restaurantItems = {lanche1, lanche2, lanche3, bebida1, bebida2, bebida3, sobremesa1,
-                                    sobremesa2, sobremesa3, acompanhamento1, acompanhamento2, acompanhamento3};
-    vector<Combo> restaurantCombos = {combo1, combo2, combo3}
+    vector<Item*> restaurantItems = {&lanche1, &lanche2, &lanche3, &bebida1, &bebida2, &bebida3, &sobremesa1,
+                                     &sobremesa2, &sobremesa3, &acompanhamento1, &acompanhamento2, &acompanhamento3};
+    vector<Combo*> restaurantCombos = {&combo1, &combo2, &combo3};
     
-    Restaurant("Hamburgueria", restaurantItems, restaurantCombos, {});
+    Restaurant restaurant("Hamburgueria", restaurantItems, restaurantCombos, {}, {});
 
-// blz, agora parou eu acho, vou add customer em restaurant e depois vou colocar pro menu receber o restaurante
-// pra gente conseguir pegar dentro do menu, os items e tals
-    Menu();
+    Menu("Menu", restaurant);
+
     return 0;
 }

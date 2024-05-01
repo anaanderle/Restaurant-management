@@ -25,36 +25,37 @@ enum PaymentMethod {
 
 class Order {
 public:
-    Order(vector<Item> items, vector<Combo> combos, Date createdAt);
+    Order(vector<Item*> items, vector<Combo*> combos, Date* createdAt);
     Order();
     
     int getCode();
-    vector<Item> getItems();
-    vector<Combo> getCombos();
+    vector<Item*> getItems();
+    vector<Combo*> getCombos();
     float getTotalValue();
     OrderStatus getOrderStatus();
-    Date getCreatedAt();
-    Customer getCustomer();
+    Date* getCreatedAt();
+    Customer* getCustomer();
     PaymentMethod getPaymentMethod();
+    void print();
 
-    void setItems(vector<Item> items);
-    void setCombos(vector<Combo> combos);
+    void setItems(vector<Item*> items);
+    void setCombos(vector<Combo*> combos);
     void setOrderStatus(OrderStatus orderStatus);
-    void setCustomer(Customer customer);
-    void addItem(Item item);
-    void addCombo(Combo combo);
+    void setCustomer(Customer* customer);
+    void addItem(Item* item);
+    void addCombo(Combo* combo);
     void pay(PaymentMethod paymentMethod);
 
 private:
     int code;
-    vector<Item> items;
-    vector<Combo> combos;
+    vector<Item*> items;
+    vector<Combo*> combos;
     float totalValue = 0.00;
     static unsigned int orderCodeSequence;
     OrderStatus orderStatus = waitingPayment;
     PaymentMethod paymentMethod;
-    Date createdAt;
-    Customer customer;
+    Date* createdAt;
+    Customer* customer;
 
     float calculateTotalValue();
 };

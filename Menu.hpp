@@ -22,7 +22,7 @@ public:
     void menu_cliente();
     void menu_admin();
     void finalizar();
-    void lanches();
+    void lanches(Order* order);
     void bebidas();
     void sobremesas();
     void combos();
