@@ -36,7 +36,7 @@ float Item::getCost() {
 
 float Item::getPrice() {
     return price;
-}g
+}
 
 void Item::setName(string name) {
     this->name = name;

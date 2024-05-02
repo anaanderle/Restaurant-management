@@ -1,4 +1,7 @@
 #include "Item.hpp"
+#include "Beverage.hpp"
+#include "Dessert.hpp"
+#include "Accompaniment.hpp"
 #include "Combo.hpp"
 #include "Snack.hpp"
 #include "Menu.hpp"
@@ -117,15 +120,15 @@ void Menu::menu_cliente()
                 break;
 
             case 2:
-                bebidas();
+                bebidas(order);
                 break;
 
             case 3:
-                acompanhamentos();
+                acompanhamentos(order);
                 break;
 
             case 4:
-                sobremesas();
+                sobremesas(order);
                 break;
 
             case 5:
@@ -237,241 +240,127 @@ void Menu::lanches(Order* order)
     }
 }
 
-void Menu::bebidas()
+void Menu::bebidas(Order* order)
 {
     int bebida = 0;
-    cout << "Bebidas" << endl;
-    cout << "1 - Refrigerante" << endl;
-    cout << "2 - Suco" << endl;
-    cout << "3 - Água" << endl;
-    cin >> bebida;
-
     int qtd_bebidas = 0;
-    int opcao = 0;
+    Item* itemEscolhido;
+    vector<Beverage*> beverages = {};
+    int exibirBebidas = 1;
 
-    switch (bebida)
-    {
-    case 1:
+    for (Item* item : restaurant.getItems()) {
+        if(dynamic_cast<Beverage*>(item) != nullptr){
+        beverages.push_back(dynamic_cast<Beverage*>(item));
+        }
+    }
+
+    while(exibirBebidas == 1){
+        cout << "Bebidas" << endl;
+
+        for (int i = 0; i < beverages.size(); i++) {
+            cout << i + 1 << " - " << beverages[i]->getName() << endl;
+        }
+
+        cin >> bebida;
+
+        itemEscolhido = beverages[bebida - 1];
+
         cout << "Quantos desta bebida deseja adicionar?" << endl;
         cin >> qtd_bebidas;
-        // fazer preço X qtd_bebidas
+
+        for(int i = 0; i < qtd_bebidas; i++){
+            order->addItem(itemEscolhido);
+        }
+
         cout << "Bebida adicionada ao carrinho!" << endl;
-        cout << "Deseja adicionar mais algum item?" << endl;
+
+        cout << "Deseja adicionar mais alguma bebida?" << endl;
         cout << "1 - Sim" << endl;
         cout << "2 - Não" << endl;
-        cin >> opcao;
-        if (opcao == 1)
-        {
-            menu_cliente();
-        }
-        else
-        {
-            finalizar();
-        }
-        break;
-
-    case 2:
-        cout << "Quantos desta bebida deseja adicionar?" << endl;
-        cin >> qtd_bebidas;
-        // fazer preço X qtd_bebidas
-        cout << "Bebida adicionada ao carrinho!" << endl;
-        cout << "Deseja adicionar mais algum item?" << endl;
-        cout << "1 - Sim" << endl;
-        cout << "2 - Não" << endl;
-        cin >> opcao;
-        if (opcao == 1)
-        {
-            menu_cliente();
-        }
-        else
-        {
-            finalizar();
-        }
-        break;
-
-    case 3:
-        cout << "Quantos desta bebida deseja adicionar?" << endl;
-        cin >> qtd_bebidas;
-        // fazer preço X qtd_bebidas
-        cout << "Bebida adicionada ao carrinho!" << endl;
-        cout << "Deseja adicionar mais algum item?" << endl;
-        cout << "1 - Sim" << endl;
-        cout << "2 - Não" << endl;
-        cin >> opcao;
-        if (opcao == 1)
-        {
-            menu_cliente();
-        }
-        else
-        {
-            finalizar();
-        }
-        break;
-
-    default:
-        cout << "Opção inválida!" << endl;
-        cout << "Pressione ENTER para voltar ao menu principal" << endl;
-        cin >> opcao;
-        break;
+        cin >> exibirBebidas;
     }
 }
 
-void Menu::acompanhamentos()
+void Menu::acompanhamentos(Order* order)
 {
     int acompanhamento = 0;
-    cout << "Acompanhamentos" << endl;
-    cout << "1 - Batata Frita" << endl;
-    cout << "2 - Onion Rings" << endl;
-    cout << "3 - Nuggets" << endl;
-    cin >> acompanhamento;
-
     int qtd_acompanhamentos = 0;
-    int opcao = 0;
+    Item* itemEscolhido;
+    vector<Accompaniment*> accompaniments = {};
+    int exibirAcompanhamento = 1;
 
-    switch (acompanhamento)
-    {
-    case 1:
-        cout << "Quantos deste acompanhamento deseja adicionar?" << endl;
+    for (Item* item : restaurant.getItems()) {
+        if(dynamic_cast<Beverage*>(item) != nullptr){
+        accompaniments.push_back(dynamic_cast<Accompaniment*>(item));
+        }
+    }
+
+    while(exibirAcompanhamento == 1){
+        cout << "Bebidas" << endl;
+
+        for (int i = 0; i < accompaniments.size(); i++) {
+            cout << i + 1 << " - " << accompaniments[i]->getName() << endl;
+        }
+
+        cin >> acompanhamento;
+
+        itemEscolhido = accompaniments[acompanhamento - 1];
+
+        cout << "Quantos desta bebida deseja adicionar?" << endl;
         cin >> qtd_acompanhamentos;
-        // fazer preço X qtd_acompanhamentos
-        cout << "Acompanhamento adicionado ao carrinho!" << endl;
-        cout << "Deseja adicionar mais algum item?" << endl;
+
+        for(int i = 0; i < qtd_acompanhamentos; i++){
+            order->addItem(itemEscolhido);
+        }
+
+        cout << "Bebida adicionada ao carrinho!" << endl;
+
+        cout << "Deseja adicionar mais alguma bebida?" << endl;
         cout << "1 - Sim" << endl;
         cout << "2 - Não" << endl;
-        cin >> opcao;
-        if (opcao == 1)
-        {
-            menu_cliente();
-        }
-        else
-        {
-            finalizar();
-        }
-        break;
-
-    case 2:
-        cout << "Quantos deste acompanhamento deseja adicionar?" << endl;
-        cin >> qtd_acompanhamentos;
-        // fazer preço X qtd_acompanhamentos
-        cout << "Acompanhamento adicionado ao carrinho!" << endl;
-        cout << "Deseja adicionar mais algum item?" << endl;
-        cout << "1 - Sim" << endl;
-        cout << "2 - Não" << endl;
-        cin >> opcao;
-        if (opcao == 1)
-        {
-            menu_cliente();
-        }
-        else
-        {
-            finalizar();
-        }
-        break;
-
-    case 3:
-        cout << "Quantos deste acompanhamento deseja adicionar?" << endl;
-        cin >> qtd_acompanhamentos;
-        // fazer preço X qtd_acompanhamentos
-        cout << "Acompanhamento adicionado ao carrinho!" << endl;
-        cout << "Deseja adicionar mais algum item?" << endl;
-        cout << "1 - Sim" << endl;
-        cout << "2 - Não" << endl;
-        cin >> opcao;
-        if (opcao == 1)
-        {
-            menu_cliente();
-        }
-        else
-        {
-            finalizar();
-        }
-        break;
-
-    default:
-        cout << "Opção inválida!" << endl;
-        cout << "Pressione ENTER para voltar ao menu principal" << endl;
-        cin >> opcao;
-        break;
+        cin >> exibirAcompanhamento;
     }
 }
 
-void Menu::sobremesas()
+void Menu::sobremesas(Order* order)
 {
 
     int sobremesa = 0;
-    cout << "Sobremesas" << endl;
-    cout << "1 - Sorvete" << endl;
-    cout << "2 - Petit Gateau" << endl;
-    cout << "3 - Torta de Limão" << endl;
-    cin >> sobremesa;
-
     int qtd_sobremesas = 0;
-    int opcao = 0;
+    Item* itemEscolhido;
+    vector<Dessert*> desserts = {};
+    int exibirSobremesas = 1;
 
-    switch (sobremesa)
-    {
-    case 1:
+    for (Item* item : restaurant.getItems()) {
+        if(dynamic_cast<Dessert*>(item) != nullptr){
+        desserts.push_back(dynamic_cast<Dessert*>(item));
+        }
+    }
+
+    while(exibirSobremesas == 1){
+        cout << "Sobremesas" << endl;
+
+        for (int i = 0; i < desserts.size(); i++) {
+            cout << i + 1 << " - " << desserts[i]->getName() << endl;
+        }
+
+        cin >> sobremesa;
+
+        itemEscolhido = desserts[sobremesa - 1];
+
         cout << "Quantos desta sobremesa deseja adicionar?" << endl;
         cin >> qtd_sobremesas;
-        // fazer preço X qtd_sobremesas
+
+        for(int i = 0; i < qtd_sobremesas; i++){
+            order->addItem(itemEscolhido);
+        }
+
         cout << "Sobremesa adicionada ao carrinho!" << endl;
-        cout << "Deseja adicionar mais algum item?" << endl;
+
+        cout << "Deseja adicionar mais alguma sobremesa?" << endl;
         cout << "1 - Sim" << endl;
         cout << "2 - Não" << endl;
-        cin >> opcao;
-        if (opcao == 1)
-        {
-            menu_cliente();
-        }
-        else
-        {
-            finalizar();
-        }
-        break;
-
-    case 2:
-        cout << "Quantos desta sobremesa deseja adicionar?" << endl;
-        cin >> qtd_sobremesas;
-        // fazer preço X qtd_sobremesas
-        cout << "Sobremesa adicionada ao carrinho!" << endl;
-        cout << "Deseja adicionar mais algum item?" << endl;
-        cout << "1 - Sim" << endl;
-        cout << "2 - Não" << endl;
-        cin >> opcao;
-        if (opcao == 1)
-        {
-            menu_cliente();
-        }
-        else
-        {
-            finalizar();
-        }
-        break;
-
-    case 3:
-        cout << "Quantos desta sobremesa deseja adicionar?" << endl;
-        cin >> qtd_sobremesas;
-        // fazer preço X qtd_sobremesas
-        cout << "Sobremesa adicionada ao carrinho!" << endl;
-        cout << "Deseja adicionar mais algum item?" << endl;
-        cout << "1 - Sim" << endl;
-        cout << "2 - Não" << endl;
-        cin >> opcao;
-        if (opcao == 1)
-        {
-            menu_cliente();
-        }
-        else
-        {
-            finalizar();
-        }
-        break;
-
-    default:
-        cout << "Opção inválida!" << endl;
-        cout << "Pressione ENTER para voltar ao menu principal" << endl;
-        cin >> opcao;
-        break;
+        cin >> exibirSobremesas;
     }
 }
 

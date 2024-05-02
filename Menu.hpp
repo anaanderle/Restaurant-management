@@ -23,10 +23,10 @@ public:
     void menu_admin();
     void finalizar();
     void lanches(Order* order);
-    void bebidas();
-    void sobremesas();
+    void bebidas(Order* order);
+    void sobremesas(Order* order);
     void combos();
-    void acompanhamentos();
+    void acompanhamentos(Order* order);
 
 private:
     string name = "";
