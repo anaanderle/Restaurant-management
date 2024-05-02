@@ -296,7 +296,7 @@ void Menu::acompanhamentos(Order* order)
     }
 
     while(exibirAcompanhamento == 1){
-        cout << "Bebidas" << endl;
+        cout << "Acompanhamentos" << endl;
 
         for (int i = 0; i < accompaniments.size(); i++) {
             cout << i + 1 << " - " << accompaniments[i]->getName() << endl;
@@ -306,16 +306,16 @@ void Menu::acompanhamentos(Order* order)
 
         itemEscolhido = accompaniments[acompanhamento - 1];
 
-        cout << "Quantos desta bebida deseja adicionar?" << endl;
+        cout << "Quantos deste acompanhamento deseja adicionar?" << endl;
         cin >> qtd_acompanhamentos;
 
         for(int i = 0; i < qtd_acompanhamentos; i++){
             order->addItem(itemEscolhido);
         }
 
-        cout << "Bebida adicionada ao carrinho!" << endl;
+        cout << "Acompanhamento adicionado ao carrinho!" << endl;
 
-        cout << "Deseja adicionar mais alguma bebida?" << endl;
+        cout << "Deseja adicionar mais algum acompanhamento?" << endl;
         cout << "1 - Sim" << endl;
         cout << "2 - Não" << endl;
         cin >> exibirAcompanhamento;
