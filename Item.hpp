@@ -26,8 +26,8 @@ public:
 
 protected:
     int code;
-    string name = "";
-    string description = "";
+    string name;
+    string description;
     float cost = 0.00;
     float price = 0.00;
     static unsigned int itemCodeSequence;

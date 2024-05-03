@@ -1,7 +1,6 @@
 #include "Restaurant.hpp"
 
-Restaurant::Restaurant(string name, vector<Item*> items, vector<Combo*> combos,
-                       vector<Order*> orders, vector<Customer*> customers)
+Restaurant::Restaurant(string name, vector<Item*> items, vector<Combo*> combos, vector<Order*> orders, vector<Customer*> customers)
 {
     this->name = name;
     this->items = items;
@@ -86,7 +85,7 @@ vector<Order*> Restaurant::getOrdersWaitingPayment()
 {
     vector<Order*> ordersWaitingPayment = {};
 
-    for (auto &order : orders)
+    for (Order* &order : orders)
     {
         if (order->getOrderStatus() == waitingPayment)
         {
@@ -101,7 +100,7 @@ vector<Order*> Restaurant::getOrdersInProduction()
 {
     vector<Order*> ordersInProduction = {};
 
-    for (auto &order : orders)
+    for (Order* &order : orders)
     {
         if (order->getOrderStatus() == production)
         {
@@ -116,14 +115,22 @@ vector<Item*> Restaurant::getItemsSoldByDate(Date* date)
 {
     vector<Item*> itemsSold = {};
 
-    for (auto &order : orders)
+    for (Order* &order : orders)
     {
-        if (order->getCreatedAt() != date)
+        if (*order->getCreatedAt() != date)
             break;
 
         for (auto &item : order->getItems())
         {
             itemsSold.push_back(item);
+        }
+
+        for (auto &combo : order->getCombos())
+        {
+            for (auto &item : combo->getItems())
+            {
+                itemsSold.push_back(item);
+            }
         }
     }
 
@@ -134,9 +141,9 @@ float Restaurant::getBillingByDate(Date* date)
 {
     float billing = 0;
 
-    for (auto &order : orders)
+    for (Order* &order : orders)
     {
-        if (order->getCreatedAt() != date)
+        if (*order->getCreatedAt() != date)
             break;
 
         for (auto &item : order->getItems())
@@ -165,4 +172,16 @@ Customer* Restaurant::getCustomerByCode(int code)
     }
 
     return nullptr;
+}
+
+vector<Order*> Restaurant::getOrdersByCustomerCodeAndOrderStatus(int customerCode, OrderStatus orderStatus) {
+    vector<Order*> ordersByCustomer = {};
+
+    for(Order* order : orders){
+        if(order->getOrderStatus() == orderStatus && order->getCustomer()->getCode() == customerCode){
+            ordersByCustomer.push_back(order);
+        }
+    }
+
+    return ordersByCustomer;
 }

@@ -4,7 +4,7 @@
 using namespace std;
 
 Order::Order(vector<Item*> items, vector<Combo*> combos, Date* createdAt) {
-    this->orderCodeSequence++;
+    Order::orderCodeSequence++;
     this->code = orderCodeSequence;
 
     this->items = items;
@@ -13,7 +13,7 @@ Order::Order(vector<Item*> items, vector<Combo*> combos, Date* createdAt) {
 }
 
 Order::Order(){
-    this->orderCodeSequence++;
+    Order::orderCodeSequence++;
     this->code = orderCodeSequence;
 }
 
@@ -69,8 +69,8 @@ void Order::setCustomer(Customer* customer) {
 }
 
 void Order::addItem(Item* item) {
-        this->items.push_back(item);
-        this->totalValue = this->calculateTotalValue();
+    this->items.push_back(item);
+    this->totalValue = this->calculateTotalValue();
 }
 
 void Order::addCombo(Combo* combo) {
@@ -84,21 +84,73 @@ void Order::pay(PaymentMethod paymentMethod) {
 }
 
 float Order::calculateTotalValue() {
-    float totalValue = 0;
+    float value = 0;
 
-    for (auto& item : items) {
-        totalValue += item->getPrice();
+    for (Item* item : items) {
+        value += item->getPrice();
     }
 
-    for (auto& combo : combos) {
-        totalValue += combo->getPriceWithDiscount();
+    for (Combo* &combo : combos) {
+        value += combo->getPriceWithDiscount();
     }
 
-    return totalValue;
+    return value;
 }
 
 void Order::print() {
-    for(auto item : items){
+    cout << "Itens:" << endl;
+
+    if(items.empty()){
+        cout << "-" << endl;
+    }
+
+    for(Item* item : items){
         item->print();
     }
+
+    cout << "Combos:" << endl;
+
+    if(combos.empty()){
+        cout << "-" << endl;
+    }
+
+    for(Combo* combo : combos){
+        cout << combo->toString() << endl;
+    }
+
+    cout << "Total: R$ " << totalValue << endl;
+}
+
+
+string Order::toString() {
+    string text = "Total: R$ " + to_string(totalValue) + " - Itens: ";
+
+    if(items.empty()) {
+        text += "não adicionado";
+    }
+    else{
+        for(int i = 0; i < items.size(); i++){
+            text += items[i]->getName();
+
+            if (i < items.size() - 1){
+                text += ", ";
+            }
+        }
+    }
+
+    text += " - Combos: ";
+
+    if(combos.empty()) {
+        text += "não adicionado";
+    } else {
+        for(int i = 0; i < combos.size(); i++){
+            text += combos[i]->toString();
+
+            if (i < combos.size() - 1){
+                text += ". ";
+            }
+        }
+    }
+
+    return text;
 }

@@ -4,12 +4,12 @@
 using namespace std;
 
 Item::Item() {
-    this->itemCodeSequence++;
+    Item::itemCodeSequence++;
     this->code = itemCodeSequence;
 }
 
 Item::Item(string name, string description, float cost, float price) {
-    this->itemCodeSequence++;
+    Item::itemCodeSequence++;
     this->code = itemCodeSequence;
 
     this->name = name;

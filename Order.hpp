@@ -37,6 +37,7 @@ public:
     Customer* getCustomer();
     PaymentMethod getPaymentMethod();
     void print();
+    string toString();
 
     void setItems(vector<Item*> items);
     void setCombos(vector<Combo*> combos);

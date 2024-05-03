@@ -37,6 +37,7 @@ public:
     vector<Item*> getItemsSoldByDate(Date* date);
     float getBillingByDate(Date* date);
     Customer* getCustomerByCode(int code);
+    vector<Order*> getOrdersByCustomerCodeAndOrderStatus(int customerCode, OrderStatus orderStatus);
 
 private:
     string name;

@@ -21,9 +21,9 @@ int main()
     Beverage bebida1("Coca-Cola", "Refrigerante de cola", 5.0, 7.0, 0.5);
     Beverage bebida2("Suco", "Suco natural laranja", 5.0, 7.0, 0.5);
     Beverage bebida3("Água", "Água", 2.0, 5.0, 0.5);
-    Dessert sobremesa1("Sorvete", "Sorvete de creme", 10.0, 15.0);
-    Dessert sobremesa2("Petit Gateau", "Petit Gateau", 25.0, 35.0);
-    Dessert sobremesa3("Torta", "Torta de limão", 15.0, 20.0);
+//    Dessert sobremesa1("Sorvete", "Sorvete de creme", 10.0, 15.0);
+//    Dessert sobremesa2("Petit Gateau", "Petit Gateau", 25.0, 35.0);
+//    Dessert sobremesa3("Torta", "Torta de limão", 15.0, 20.0);
     AccompanimentSize tamanho;
     Accompaniment acompanhamento1("Batata frita", "Batata frita", 10.0, 15.0, tamanho);
     Accompaniment acompanhamento2("Onion rings", "Anéis de cebola empanados", 10.0, 15.0, tamanho);
@@ -35,8 +35,7 @@ int main()
     Combo combo2(itemsCombo2, 0.15);
     Combo combo3(itemsCombo3, 0.15);
 
-    vector<Item*> restaurantItems = {&lanche1, &lanche2, &lanche3, &bebida1, &bebida2, &bebida3, &sobremesa1,
-                                     &sobremesa2, &sobremesa3, &acompanhamento1, &acompanhamento2, &acompanhamento3};
+    vector<Item*> restaurantItems = {&lanche1, &lanche2, &lanche3, &bebida1, &bebida2, &bebida3,  &acompanhamento1, &acompanhamento2, &acompanhamento3};
     vector<Combo*> restaurantCombos = {&combo1, &combo2, &combo3};
     
     Restaurant restaurant("Hamburgueria", restaurantItems, restaurantCombos, {}, {});

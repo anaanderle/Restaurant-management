@@ -14,20 +14,21 @@ public:
 
     Menu(string name, Restaurant restaurant);
 
-    int pedidos_andamento();
-    int itens_vendidos();
-    float faturamento();
+    void ordersInProduction();
+    void soldItems();
+    void billing();
 
-    void menu_inicial();
-    void menu_cliente();
-    void menu_admin();
-    void finalizar();
-    void lanches(Order* order);
-    void bebidas(Order* order);
-    void sobremesas(Order* order);
-    void combos();
-    void acompanhamentos(Order* order);
-
+    void initialMenu();
+    void customerMenu();
+    void adminMenu();
+    void doOrder(Customer* customer);
+    void listOrders(Customer* customer);
+    bool pay(Order* order);
+    void snacks(Order* order);
+    void beverages(Order* order);
+    void desserts(Order* order);
+    void accompaniments(Order* order);
+    void combos(Order* order);
 private:
     string name = "";
     Restaurant restaurant;
