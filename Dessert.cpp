@@ -10,5 +10,5 @@ Dessert::Dessert(string name, string description, float cost, float price): Item
 
 void Dessert::setCost(float cost) {
     this->cost = cost;
-    this->price = 1.3 * cost;
+    this->price = 1.udo3 * cost;
 }

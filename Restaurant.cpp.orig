@@ -177,8 +177,8 @@ Customer* Restaurant::getCustomerByCode(int code)
 vector<Order*> Restaurant::getOrdersByCustomerCodeAndOrderStatus(int customerCode, OrderStatus orderStatus) {
     vector<Order*> ordersByCustomer = {};
 
-    for(Order* order : orders) {
-        if(order->getOrderStatus() == orderStatus && order->getCustomer()->getCode() == customerCode) {
+    for(Order* order : orders){
+        if(order->getOrderStatus() == orderStatus && order->getCustomer()->getCode() == customerCode){
             ordersByCustomer.push_back(order);
         }
     }

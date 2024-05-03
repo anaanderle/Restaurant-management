@@ -46,7 +46,7 @@ float Combo::getPriceWithDiscount() {
 }
 
 void Combo::setItems(vector<Item*> items) {
-    this->items = items;
+     this->items = items;
 }
 
 void Combo::setDiscount(float discount) {

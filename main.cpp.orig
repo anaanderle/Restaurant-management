@@ -37,7 +37,7 @@ int main()
 
     vector<Item*> restaurantItems = {&snack1, &snack2, &snack3, &beverage1, &beverage2, &beverage3, &dessert1, &dessert2, &dessert3, &acompanhamento1, &acompanhamento2, &acompanhamento3};
     vector<Combo*> restaurantCombos = {&combo1, &combo2, &combo3};
-
+    
     Restaurant restaurant("Sanduichero", restaurantItems, restaurantCombos, {}, {});
 
     Menu("Menu", restaurant);

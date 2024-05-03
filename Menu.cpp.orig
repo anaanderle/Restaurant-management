@@ -54,14 +54,14 @@ void Menu::customerMenu()
     int customerCode;
     Customer* customer;
 
-    while(option == 0) {
+    while(option == 0){
         cout << "\nEscolha uma opção:" << endl;
         cout << "1 - Cadastro" << endl;
         cout << "2 - Fazer pedido" << endl;
         cout << "3 - Pagar pedido" << endl;
         cout << "Outro para voltar" << endl;
         cin >> option;
-
+        
         switch (option)
         {
         case 1:
@@ -82,7 +82,7 @@ void Menu::customerMenu()
 
             customer = restaurant.getCustomerByCode(customerCode);
 
-            if(customer == nullptr) {
+            if(customer == nullptr){
                 cout << "\nNão foi possível encontrar um cliente com esse código!" << endl;
             } else {
                 customerName = customer->getName();
@@ -96,7 +96,7 @@ void Menu::customerMenu()
 
             customer = restaurant.getCustomerByCode(customerCode);
 
-            if(customer == nullptr) {
+            if(customer == nullptr){
                 cout << "\nNão foi possível encontrar um cliente com esse código!" << endl;
             } else {
                 customerName = customer->getName();
@@ -113,30 +113,30 @@ void Menu::customerMenu()
 void Menu::listOrders(Customer *customer) {
     int orderIndex = -1;
     vector<Order*> customerOrdersWaitingPayment =
-        restaurant.getOrdersByCustomerCodeAndOrderStatus(customer->getCode(), waitingPayment);
+            restaurant.getOrdersByCustomerCodeAndOrderStatus(customer->getCode(), waitingPayment);
 
-    while(orderIndex == -1) {
+    while(orderIndex == -1){
         cout << "Selecione o pedido para pagamento:" << endl;
 
-        if(customerOrdersWaitingPayment.empty()) {
+        if(customerOrdersWaitingPayment.empty()){
             cout << "Não há nenhum pedido para pagar." << endl;
             return;
         }
 
-        for(int i = 0; i < customerOrdersWaitingPayment.size(); i++) {
+        for(int i = 0; i < customerOrdersWaitingPayment.size(); i++){
             cout << i + 1 << " - " << customerOrdersWaitingPayment[i]->toString() << endl;
         }
 
         cin >> orderIndex;
 
-        if(orderIndex > customerOrdersWaitingPayment.size()) {
+        if(orderIndex > customerOrdersWaitingPayment.size()){
             cout << "\nParece que essa opção não está disponível!\n" << endl;
             return;
         }
 
         bool hasSuccess = pay(customerOrdersWaitingPayment[orderIndex - 1]);
 
-        if(!hasSuccess) {
+        if(!hasSuccess){
             orderIndex = -1;
         }
     }
@@ -155,7 +155,7 @@ void Menu::doOrder(Customer* customer) {
 
     int option = 1;
 
-    while(option == 1) {
+    while(option == 1){
         cout << "\nCARDÁPIO" << endl;
         cout << "1 - Lanches" << endl;
         cout << "2 - Bebidas" << endl;
@@ -167,23 +167,23 @@ void Menu::doOrder(Customer* customer) {
 
         switch (option)
         {
-        case 1:
-            snacks(order);
-            break;
-        case 2:
-            beverages(order);
-            break;
-        case 3:
-            accompaniments(order);
-            break;
-        case 4:
-            desserts(order);
-            break;
-        case 5:
-            combos(order);
-            break;
-        default:
-            return;
+            case 1:
+                snacks(order);
+                break;
+            case 2:
+                beverages(order);
+                break;
+            case 3:
+                accompaniments(order);
+                break;
+            case 4:
+                desserts(order);
+                break;
+            case 5:
+                combos(order);
+                break;
+            default:
+                return;
         }
 
         cout << "\nConfira seu pedido abaixo:" << endl;
@@ -191,16 +191,16 @@ void Menu::doOrder(Customer* customer) {
 
         option = 0;
 
-        while(option == 0) {
+        while(option == 0){
             cout << "Selecione a opção desejada:" << endl;
             cout << "1 - Adicionar mais um item" << endl;
             cout << "2 - Pagar" << endl;
             cout << "Outro para voltar" << endl;
             cin >> option;
 
-            if(option == 2) {
+            if(option == 2){
                 bool hasSuccess = pay(order);
-                if(!hasSuccess) {
+                if(!hasSuccess){
                     option = 0;
                 }
             }
@@ -248,7 +248,7 @@ void Menu::snacks(Order* order)
     int snackMenu = 1;
 
     for (Item* item : restaurant.getItems()) {
-        if(dynamic_cast<Snack*>(item) != nullptr) {
+        if(dynamic_cast<Snack*>(item) != nullptr){
             snacks.push_back(dynamic_cast<Snack*>(item));
         }
     }
@@ -258,7 +258,7 @@ void Menu::snacks(Order* order)
         return;
     }
 
-    while(snackMenu == 1) {
+    while(snackMenu == 1){
         cout << "Lanches" << endl;
 
         for (int i = 0; i < snacks.size(); i++) {
@@ -267,7 +267,7 @@ void Menu::snacks(Order* order)
 
         cin >> snack;
 
-        if(snack > snacks.size()) {
+        if(snack > snacks.size()){
             cout << "\nParece que essa opção não está disponível!\n" << endl;
             snackMenu = 1;
             continue;
@@ -278,7 +278,7 @@ void Menu::snacks(Order* order)
         cout << "Quantos deste lanche deseja adicionar?" << endl;
         cin >> countSnack;
 
-        for(int i = 0; i < countSnack; i++) {
+        for(int i = 0; i < countSnack; i++){
             order->addItem(selectedItem);
         }
 
@@ -300,8 +300,8 @@ void Menu::beverages(Order* order)
     int beverageMenu = 1;
 
     for (Item* item : restaurant.getItems()) {
-        if(dynamic_cast<Beverage*>(item) != nullptr) {
-            beverages.push_back(dynamic_cast<Beverage*>(item));
+        if(dynamic_cast<Beverage*>(item) != nullptr){
+        beverages.push_back(dynamic_cast<Beverage*>(item));
         }
     }
 
@@ -310,7 +310,7 @@ void Menu::beverages(Order* order)
         return;
     }
 
-    while(beverageMenu == 1) {
+    while(beverageMenu == 1){
         cout << "Bebidas" << endl;
 
         for (int i = 0; i < beverages.size(); i++) {
@@ -319,7 +319,7 @@ void Menu::beverages(Order* order)
 
         cin >> beverage;
 
-        if(beverage > beverages.size()) {
+        if(beverage > beverages.size()){
             cout << "\nParece que essa opção não está disponível!\n" << endl;
             beverageMenu = 1;
             continue;
@@ -330,7 +330,7 @@ void Menu::beverages(Order* order)
         cout << "Quantos desta bebida deseja adicionar?" << endl;
         cin >> countBeverage;
 
-        for(int i = 0; i < countBeverage; i++) {
+        for(int i = 0; i < countBeverage; i++){
             order->addItem(selectedItem);
         }
 
@@ -352,7 +352,7 @@ void Menu::accompaniments(Order* order)
     int accompanimentMenu = 1;
 
     for (Item* item : restaurant.getItems()) {
-        if(dynamic_cast<Beverage*>(item) != nullptr) {
+        if(dynamic_cast<Beverage*>(item) != nullptr){
             accompaniments.push_back(dynamic_cast<Accompaniment*>(item));
         }
     }
@@ -362,7 +362,7 @@ void Menu::accompaniments(Order* order)
         return;
     }
 
-    while(accompanimentMenu == 1) {
+    while(accompanimentMenu == 1){
         cout << "Acompanhamentos" << endl;
 
         for (int i = 0; i < accompaniments.size(); i++) {
@@ -371,7 +371,7 @@ void Menu::accompaniments(Order* order)
 
         cin >> accompaniment;
 
-        if(accompaniment > accompaniments.size()) {
+        if(accompaniment > accompaniments.size()){
             cout << "\nParece que essa opção não está disponível!\n" << endl;
             accompanimentMenu = 1;
             continue;
@@ -382,7 +382,7 @@ void Menu::accompaniments(Order* order)
         cout << "Quantos deste acompanhamento deseja adicionar?" << endl;
         cin >> countAccompaniments;
 
-        for(int i = 0; i < countAccompaniments; i++) {
+        for(int i = 0; i < countAccompaniments; i++){
             order->addItem(selectedItem);
         }
 
@@ -405,8 +405,8 @@ void Menu::desserts(Order* order)
     int dessertMenu = 1;
 
     for (Item* item : restaurant.getItems()) {
-        if(dynamic_cast<Dessert*>(item) != nullptr) {
-            desserts.push_back(dynamic_cast<Dessert*>(item));
+        if(dynamic_cast<Dessert*>(item) != nullptr){
+        desserts.push_back(dynamic_cast<Dessert*>(item));
         }
     }
 
@@ -415,7 +415,7 @@ void Menu::desserts(Order* order)
         return;
     }
 
-    while(dessertMenu == 1) {
+    while(dessertMenu == 1){
         cout << "Sobremesas" << endl;
 
         for (int i = 0; i < desserts.size(); i++) {
@@ -424,7 +424,7 @@ void Menu::desserts(Order* order)
 
         cin >> dessert;
 
-        if(dessert > desserts.size()) {
+        if(dessert > desserts.size()){
             cout << "\nParece que essa opção não está disponível!\n" << endl;
             dessertMenu = 1;
             continue;
@@ -435,7 +435,7 @@ void Menu::desserts(Order* order)
         cout << "Quantos desta sobremesa deseja adicionar?" << endl;
         cin >> countDessert;
 
-        for(int i = 0; i < countDessert; i++) {
+        for(int i = 0; i < countDessert; i++){
             order->addItem(selectedItem);
         }
 
@@ -455,7 +455,7 @@ void Menu::combos(Order* order)
     Combo* selectedCombo;
     int comboMenu = 1;
 
-    while(comboMenu == 1) {
+    while(comboMenu == 1){
         cout << "Combos" << endl;
 
         for (int i = 0; i < restaurant.getCombos().size(); i++) {
@@ -469,7 +469,7 @@ void Menu::combos(Order* order)
         cout << "Quantos deste combo deseja adicionar?" << endl;
         cin >> countCombos;
 
-        for(int i = 0; i < countCombos; i++) {
+        for(int i = 0; i < countCombos; i++){
             order->addCombo(selectedCombo);
         }
 
@@ -514,7 +514,7 @@ void Menu::ordersInProduction()
     cout << "Pedidos em andamento:" << endl;
     vector<Order*> orders = restaurant.getOrdersInProduction();
 
-    for(Order* order : orders) {
+    for(Order* order : orders){
         order->print();
         cout << "\n" << endl;
     }
@@ -529,23 +529,23 @@ void Menu::soldItems()
     vector<Item*> items = restaurant.getItemsSoldByDate(date);
     vector<vector<Item*>> groupedItems = {};
 
-    for(Item* item : items) {
+    for(Item* item : items){
         bool existsOnGroupedItems = false;
 
-        for(vector<Item*>& groupedItem : groupedItems) {
-            if(groupedItem[0]->getCode() == item->getCode()) {
+        for(vector<Item*>& groupedItem : groupedItems){
+            if(groupedItem[0]->getCode() == item->getCode()){
                 groupedItem.push_back(item);
                 existsOnGroupedItems = true;
             }
         }
 
-        if(!existsOnGroupedItems) {
+        if(!existsOnGroupedItems){
             groupedItems.push_back({item});
         }
     }
 
     cout << "Itens vendidos:" << endl;
-    for(vector<Item*> groupedItem : groupedItems) {
+    for(vector<Item*> groupedItem : groupedItems){
         cout << groupedItem.size() << "x - " << groupedItem[0]->getName() << endl;
     }
 }

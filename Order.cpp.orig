@@ -12,7 +12,7 @@ Order::Order(vector<Item*> items, vector<Combo*> combos, Date* createdAt) {
     this->createdAt = createdAt;
 }
 
-Order::Order() {
+Order::Order(){
     Order::orderCodeSequence++;
     this->code = orderCodeSequence;
 }
@@ -100,21 +100,21 @@ float Order::calculateTotalValue() {
 void Order::print() {
     cout << "Itens:" << endl;
 
-    if(items.empty()) {
+    if(items.empty()){
         cout << "-" << endl;
     }
 
-    for(Item* item : items) {
+    for(Item* item : items){
         item->print();
     }
 
     cout << "Combos:" << endl;
 
-    if(combos.empty()) {
+    if(combos.empty()){
         cout << "-" << endl;
     }
 
-    for(Combo* combo : combos) {
+    for(Combo* combo : combos){
         cout << combo->toString() << endl;
     }
 
@@ -128,11 +128,11 @@ string Order::toString() {
     if(items.empty()) {
         text += "não adicionado";
     }
-    else {
-        for(int i = 0; i < items.size(); i++) {
+    else{
+        for(int i = 0; i < items.size(); i++){
             text += items[i]->getName();
 
-            if (i < items.size() - 1) {
+            if (i < items.size() - 1){
                 text += ", ";
             }
         }
@@ -143,10 +143,10 @@ string Order::toString() {
     if(combos.empty()) {
         text += "não adicionado";
     } else {
-        for(int i = 0; i < combos.size(); i++) {
+        for(int i = 0; i < combos.size(); i++){
             text += combos[i]->toString();
 
-            if (i < combos.size() - 1) {
+            if (i < combos.size() - 1){
                 text += ". ";
             }
         }
