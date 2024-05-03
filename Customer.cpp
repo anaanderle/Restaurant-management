@@ -4,14 +4,14 @@
 using namespace std;
 
 Customer::Customer(string name) {
-    this->customerCodeSequence++;
+    Customer::customerCodeSequence++;
     this->code = customerCodeSequence;
 
     this->name = name;
 }
 
 Customer::Customer() {
-    this->customerCodeSequence++;
+    Customer::customerCodeSequence++;
     this->code = customerCodeSequence;
 }
 
