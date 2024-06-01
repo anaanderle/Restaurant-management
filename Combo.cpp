@@ -1,5 +1,3 @@
-//combo.cpp
-
 #include "Combo.hpp"
 #include <string>
 

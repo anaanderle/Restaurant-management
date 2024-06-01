@@ -1,7 +1,3 @@
-//
-// Created by ana on 30/04/24.
-//
-
 #ifndef RESTAURANT_MANAGEMENT_RESTAURANT_HPP
 #define RESTAURANT_MANAGEMENT_RESTAURANT_HPP
 
@@ -48,4 +44,4 @@ private:
 };
 
 
-#endif //RESTAURANT_MANAGEMENT_RESTAURANT_HPP
+#endif
